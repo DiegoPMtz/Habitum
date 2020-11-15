@@ -4,38 +4,37 @@ import 'package:habitum3/components/header.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          drawer: _menudrawer(),
-          body: Builder(
-            builder: (context) => Column(
-              children: [
-                Container(
-                  child: Stack(
-                    children: [
-                      Header(
-                        color: Colors.cyan[700],
-                        color2: Colors.cyan[900],
-                      ),
-                      IconButton(
-                          alignment: Alignment(2, 5),
-                          //iconSize: 35,
-                          icon: Icon(Icons.menu),
-                          onPressed: () {
-                            Scaffold.of(context).openDrawer();
-                          })
-                    ],
+    return Scaffold(
+      drawer: _menudrawer(context),
+      body: Builder(
+        builder: (context) => Column(
+          children: [
+            Container(
+              child: Stack(
+                children: [
+                  Header(
+                    color: Colors.cyan[700],
+                    color2: Colors.cyan[900],
                   ),
-                ),
-              ],
+                  IconButton(
+                      alignment: Alignment(2, 10),
+                      //iconSize: 35,
+                      icon: Icon(Icons.menu),
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      }),
+                ],
+              ),
             ),
-          )),
+          ],
+        ),
+      ),
     );
   }
 
-  SizedBox _menudrawer() {
+  SizedBox _menudrawer(BuildContext context) {
     return SizedBox(
-      width: 156,
+      width: 130,
       child: Drawer(
         elevation: 16,
         child: Container(
@@ -43,9 +42,25 @@ class Home extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               Container(
-                height: 218,
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(9)),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.cyan[700], Colors.cyan[900]],
+                  ),
+                ),
+                height: 210,
                 child: DrawerHeader(
-                  child: Text("Habitum"),
+                  child: Container(
+                      margin: EdgeInsets.only(right: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: AssetImage("assets/images/logo.png"),
+                            fit: BoxFit.cover),
+                      )),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -56,11 +71,27 @@ class Home extends StatelessWidget {
                 ),
               ),
               ListTile(
-                title: Text("Hola"),
+                title: Text("Habitos Positivos"),
+                onTap: () {
+                  Navigator.pushNamed(context, 'positive');
+                },
               ),
+              Divider(),
               ListTile(
-                title: Text("Adios"),
-              )
+                title: Text("Habitos negativos"),
+                onTap: () {},
+              ),
+              Divider(),
+              ListTile(
+                title: Text("Calculadora de calorias"),
+                onTap: () {},
+              ),
+              Divider(),
+              ListTile(
+                title: Text("Adicciones"),
+                onTap: () {},
+              ),
+              Divider(),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitum3/screens/home/home.dart';
+import 'package:habitum3/screens/positive/positive_habits_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,10 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Habitum',
         theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Home());
+        initialRoute: '/',
+        routes: {
+          '/': (BuildContext context) => Home(),
+          'positive': (BuildContext context) => PositivePage(),
+        });
   }
 }
