@@ -15,10 +15,11 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _height = MediaQuery.of(context).size.height * .22;
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
-        height: 235,
+        height: _height,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -37,7 +38,7 @@ class MyClipper extends CustomClipper<Path> {
     var path = Path();
     path.lineTo(0, size.height - 35);
     path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 80);
+        size.width / 5, size.height, size.width, size.height - 80);
     path.lineTo(size.width, 0);
     path.close();
     return path;
