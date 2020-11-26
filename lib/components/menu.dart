@@ -1,89 +1,69 @@
 import 'package:flutter/material.dart';
 
-class MenuDrawer extends StatelessWidget {
-  const MenuDrawer({Key key}) : super(key: key);
+import 'division.dart';
+import 'header.dart';
+
+class Separador extends StatelessWidget {
+  const Separador(
+    BuildContext context, {
+    Key key,
+  }) : super(key: key);
 
   @override
-  SizedBox build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * .4,
-      child: Drawer(
-        elevation: 25,
-        child: Container(
-          child: ListView(
-            padding: EdgeInsets.zero,
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          child: Stack(
             children: [
-              Container(
-                height: 210,
-                decoration: BoxDecoration(
-                  border: Border(top: BorderSide.none),
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: Radius.circular(9)),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Colors.cyan[500], Colors.cyan[900]],
-                  ),
-                ),
-                child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Colors.cyan[500], Colors.cyan[900]],
-                    ),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("assets/images/logo.png"),
-                          fit: BoxFit.fill),
-                    ),
-                  ),
-                ),
+              Header(
+                color: Colors.cyan[700],
+                color2: Colors.cyan[900],
               ),
-              ListTile(
-                title: Text(
-                  "Habitos Positivos",
-                  style: TextStyle(fontSize: 12),
-                ),
-                trailing: Icon(Icons.add),
-                onTap: () {
-                  Navigator.pushNamed(context, 'positive');
-                },
-              ),
-              Divider(),
-              ListTile(
-                title: Text(
-                  "Habitos negativos",
-                  style: TextStyle(fontSize: 12),
-                ),
-                trailing: Icon(Icons.remove),
-                onTap: () {},
-              ),
-              Divider(),
-              ListTile(
-                title: Text(
-                  "Calculadora de calorias",
-                  style: TextStyle(fontSize: 12),
-                ),
-                trailing: Icon(Icons.calculate),
-                onTap: () {},
-              ),
-              Divider(),
-              ListTile(
-                title: Text(
-                  "Adicciones",
-                  style: TextStyle(fontSize: 12),
-                ),
-                trailing: Icon(Icons.not_interested),
-                onTap: () {},
-              ),
-              Divider(),
             ],
           ),
         ),
-      ),
+        Hero(
+          tag: 'barra1',
+          child: Divisiones(
+            color: Colors.blue,
+            texto: "Positivos",
+            ruta: 'positive',
+            icono: Icon(Icons.add, color: Colors.white),
+            opacidad: 1.0,
+          ),
+        ),
+        Hero(
+          tag: 'barra3',
+          child: Divisiones(
+            color: Colors.red,
+            icono: Icon(Icons.remove, color: Colors.white),
+            texto: "Negativos",
+            ruta: 'negative',
+            opacidad: 1.0,
+          ),
+        ),
+        Hero(
+          tag: 'barra4',
+          child: Divisiones(
+            color: Colors.yellow,
+            icono: Icon(Icons.calculate, color: Colors.white),
+            texto: "Calculadora",
+            ruta: 'calculator',
+            opacidad: 1.0,
+          ),
+        ),
+        Hero(
+          tag: 'barra5',
+          child: Divisiones(
+            color: Colors.black38,
+            icono: Icon(Icons.not_interested, color: Colors.white),
+            texto: "Adicciones",
+            ruta: 'addictions',
+            opacidad: 1.0,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
 
 class PositivePage extends StatelessWidget {
+  String positivo1 = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,33 +94,48 @@ class PositivePage extends StatelessWidget {
                       ),
                       border: InputBorder.none,
                     ),
+                    onChanged: (valor) {
+                      positivo1 = valor;
+                      print(positivo1);
+                    },
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
                 Container(
-                    height: MediaQuery.of(context).size.height * .14,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey[200],
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
+                  height: MediaQuery.of(context).size.height * .14,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey[200],
                     ),
-                    child: Column(
-                      children: [
-                        Text("Descripcion"),
-                        TextField(
-                          cursorColor: Colors.cyan,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                          ),
-                          maxLines: null,
-                        )
-                      ],
-                    )),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Text("Descripcion"),
+                      TextField(
+                        cursorColor: Colors.cyan,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        maxLines: null,
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 250,
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    child: Icon(Icons.add),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/', arguments: positivo1);
+                    },
+                  ),
+                )
               ],
             ),
           )
