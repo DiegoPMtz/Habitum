@@ -28,7 +28,7 @@ class SignInPage extends StatelessWidget {
                 image: AssetImage('assets/images/logo.png')),
           ),
           Container(
-            height: 302,
+            height: MediaQuery.of(context).size.height * .4,
             width: 448,
             margin: EdgeInsets.only(
               top: 257,
