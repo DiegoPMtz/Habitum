@@ -8,7 +8,8 @@ import 'package:habitum3/screens/home.dart';
 import 'package:habitum3/screens/negative_habits_page.dart';
 import 'package:habitum3/screens/positive_habits_page.dart';
 import 'package:habitum3/screens/sign_in_page.dart';
-import 'package:habitum3/screens/sign_up_page.dart';
+
+import 'bloc/provider.dart';
 
 void main() {
   LicenseRegistry.addLicense(() async* {
@@ -26,22 +27,23 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Habitum',
-        theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme: GoogleFonts.latoTextTheme(),
-        ),
-        initialRoute: 'signin',
-        routes: {
-          'signin': (BuildContext context) => SignInPage(),
-          'signup': (BuildContext context) => SignUpPage(),
-          '/': (BuildContext context) => Home(),
-          'positive': (BuildContext context) => PositivePage(),
-          'negative': (BuildContext context) => NegativePage(),
-          'calculator': (BuildContext context) => CalculatorPage(),
-          'addictions': (BuildContext context) => AddictionsPage(),
-        });
+    return Provider(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Habitum',
+          theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            textTheme: GoogleFonts.latoTextTheme(),
+          ),
+          initialRoute: 'signin',
+          routes: {
+            'signin': (BuildContext context) => SignInPage(),
+            'home': (BuildContext context) => Home(),
+            'positive': (BuildContext context) => PositivePage(),
+            'negative': (BuildContext context) => NegativePage(),
+            'calculator': (BuildContext context) => CalculatorPage(),
+            'addictions': (BuildContext context) => AddictionsPage(),
+          }),
+    );
   }
 }
