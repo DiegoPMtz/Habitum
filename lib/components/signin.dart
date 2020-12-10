@@ -12,10 +12,13 @@ class SignIn extends StatelessWidget {
 
     return Column(
       children: [
+        SizedBox(
+          height: 40,
+        ),
         createEmail(bloc),
         createPassword(bloc),
         SizedBox(
-          height: 10,
+          height: 50,
         ),
         createEmailButton(context, bloc),
         SizedBox(
@@ -46,15 +49,16 @@ class SignIn extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Contraseña",
               prefixIcon: SvgPicture.asset(
                 'assets/icons/password.svg',
                 fit: BoxFit.scaleDown,
-                color: Colors.white,
+                // color: Colors.white,
               ),
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -79,16 +83,16 @@ class SignIn extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Usuario",
               prefixIcon: SvgPicture.asset(
                 'assets/icons/user2.svg',
                 fit: BoxFit.scaleDown,
-                color: Colors.white,
+                // color: Colors.white,
               ),
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),

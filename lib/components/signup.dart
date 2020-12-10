@@ -10,11 +10,14 @@ class SignUp extends StatelessWidget {
     final bloc = Provider.of(context);
     return Column(
       children: [
+        SizedBox(
+          height: 40,
+        ),
         _crearUsuario(bloc),
         _crearCorreo(bloc),
         _crearPassword(bloc),
         SizedBox(
-          height: 10,
+          height: 40,
         ),
         _crearBoton(context, bloc),
       ],
@@ -96,11 +99,11 @@ class SignUp extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Crea tu Contraseña",
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -124,11 +127,11 @@ class SignUp extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Crea tu Usuario",
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -153,11 +156,11 @@ class SignUp extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Ingresa tu Correo",
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),

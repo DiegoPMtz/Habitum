@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    //   DeviceOrientation.portraitDown,
+    // ]);
     return Provider(
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -37,14 +37,10 @@ class MyApp extends StatelessWidget {
             // ... app-specific localization delegate[s] here
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: [
             const Locale('en', ''), // English, no country code
             const Locale('es', 'ES'), // Arabic, no country code
-            const Locale.fromSubtags(
-                languageCode: 'zh'), // Chinese *See Advanced Locales below*
-            // ... other locales the app supports
           ],
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
