@@ -4,34 +4,43 @@ import 'package:habitum3/bloc/provider.dart';
 
 import 'package:habitum3/components/grafica.dart';
 import 'package:habitum3/components/menu.dart';
+import 'package:habitum3/components/user.dart';
 
 class Home extends StatelessWidget {
-  final int positivos = 5;
-  final int negativos = 7;
-
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final bloc = Provider.of(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Separador(context),
           SingleChildScrollView(
             child: Column(
               children: [
                 Container(
                   margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * .2,
-                    left: 50,
-                    right: 50,
-                  ),
+                      top: size.height * .2,
+                      left: size.width * .12,
+                      right: size.width * .12),
                   child: Text(
-                    "Me da gusto verte de nuevo... ${bloc.email} ",
+                    (bloc.user == null) ? "Bienvenido" : "Hola ${bloc.user} ",
                     style: TextStyle(
-                      fontSize: 45,
+                      fontSize: 35,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Container(
+                    child: Text(
+                      "Veamos tu progreso semanal...",
+                      style: TextStyle(fontSize: 25),
                     ),
                   ),
                 ),
@@ -39,16 +48,7 @@ class Home extends StatelessWidget {
                   height: 20,
                 ),
                 Container(
-                  child: Text(
-                    "Veamos tu progreso semanal.",
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 300,
+                  height: size.height * .5,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     // border: Border.all(color: Colors.grey),
@@ -59,6 +59,8 @@ class Home extends StatelessWidget {
               ],
             ),
           ),
+          Separador(context),
+          UserInfo(),
         ],
       ),
     );

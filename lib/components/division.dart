@@ -45,7 +45,10 @@ class _DivisionesState extends State<Divisiones> {
       child: Opacity(
         opacity: widget.opacidad,
         child: Container(
-          margin: EdgeInsets.only(right: 387, top: 50),
+          margin: EdgeInsets.only(
+            top: 50,
+            right: MediaQuery.of(context).size.width * .92,
+          ),
           height: 80,
           width: 35,
           decoration: BoxDecoration(

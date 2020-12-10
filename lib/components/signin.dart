@@ -136,6 +136,7 @@ class SignIn extends StatelessWidget {
 
   _login(BuildContext context, LoginBloc bloc) {
     usuarioProvider.login(bloc.email, bloc.password);
+    Navigator.pushReplacementNamed(context, 'home');
   }
 
   Widget createGoogleButton(BuildContext context) {

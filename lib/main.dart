@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,7 @@ import 'package:habitum3/screens/home.dart';
 import 'package:habitum3/screens/negative_habits_page.dart';
 import 'package:habitum3/screens/positive_habits_page.dart';
 import 'package:habitum3/screens/sign_in_page.dart';
+import 'package:habitum3/screens/user_info_page.dart';
 
 import 'bloc/provider.dart';
 
@@ -31,6 +33,19 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Habitum',
+          localizationsDelegates: [
+            // ... app-specific localization delegate[s] here
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('en', ''), // English, no country code
+            const Locale('es', 'ES'), // Arabic, no country code
+            const Locale.fromSubtags(
+                languageCode: 'zh'), // Chinese *See Advanced Locales below*
+            // ... other locales the app supports
+          ],
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
             textTheme: GoogleFonts.latoTextTheme(),
@@ -43,6 +58,7 @@ class MyApp extends StatelessWidget {
             'negative': (BuildContext context) => NegativePage(),
             'calculator': (BuildContext context) => CalculatorPage(),
             'addictions': (BuildContext context) => AddictionsPage(),
+            'user': (BuildContext context) => UserInfoPage(),
           }),
     );
   }

@@ -14,7 +14,7 @@ class AddictionsPage extends StatelessWidget {
                 color: Colors.cyan[700],
                 icono: Icon(Icons.home, color: Colors.white),
                 texto: "Home",
-                ruta: '/',
+                ruta: 'home',
                 opacidad: 1.0,
               ),
             ),

@@ -25,4 +25,14 @@ class Validator {
       }
     },
   );
+
+  final validarUser = StreamTransformer<String, String>.fromHandlers(
+    handleData: (user, sink) {
+      if (user.length <= 12) {
+        sink.add(user);
+      } else {
+        sink.addError('Usuario mayor a 12 letras');
+      }
+    },
+  );
 }

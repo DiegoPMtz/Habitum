@@ -11,9 +11,8 @@ class SignUp extends StatelessWidget {
     return Column(
       children: [
         _crearUsuario(bloc),
-        // _crearCorreo(bloc),
+        _crearCorreo(bloc),
         _crearPassword(bloc),
-
         SizedBox(
           height: 10,
         ),
@@ -58,9 +57,7 @@ class SignUp extends StatelessWidget {
   }
 
   _login(BuildContext context, LoginBloc bloc) {
-    // print('Email: ${bloc.email}');
-    // print('Password: ${bloc.password}');
-    // Navigator.pushReplacementNamed(context, '/');
+    Navigator.pushReplacementNamed(context, 'home');
     usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
   }
 
@@ -116,7 +113,7 @@ class SignUp extends StatelessWidget {
 
   Widget _crearUsuario(LoginBloc bloc) {
     return StreamBuilder(
-      stream: bloc.emailStream,
+      stream: bloc.userStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
           margin: EdgeInsets.symmetric(
@@ -130,6 +127,35 @@ class SignUp extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.white),
               ),
               hintText: "Crea tu Usuario",
+              hintStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+            onChanged: bloc.changeUser,
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _crearCorreo(LoginBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.emailStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 15,
+          ),
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              errorText: snapshot.error,
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              hintText: "Ingresa tu Correo",
               hintStyle: TextStyle(
                 color: Colors.white,
                 fontSize: 20,

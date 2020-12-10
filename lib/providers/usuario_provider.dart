@@ -45,4 +45,26 @@ class UsuarioProvider {
       return {'ok': false, 'token': decodedResp['error']['message']};
     }
   }
+
+  Future<Map<String, dynamic>> actualizarUsuario(
+      String email, String password, String user) async {
+    final authData = {
+      'email': email,
+      'password': password,
+      'displayName': user,
+      'returnSecureToken': true,
+    };
+    final resp = await http.post(
+        'https://identitytoolkit.googleapis.com/v1/accounts:update?key=$_firebaseToken',
+        body: json.encode(authData));
+
+    Map<String, dynamic> decodedResp = json.decode(resp.body);
+    print(decodedResp);
+
+    if (decodedResp.containsKey('idToken')) {
+      return {'ok': true, 'token': decodedResp['idToken']};
+    } else {
+      return {'ok': false, 'token': decodedResp['error']['message']};
+    }
+  }
 }
