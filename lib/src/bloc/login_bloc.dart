@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:habitum3/bloc/valodators.dart';
+import 'package:habitum3/src/bloc/valodators.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc with Validator {

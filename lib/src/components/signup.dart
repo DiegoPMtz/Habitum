@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:habitum3/bloc/provider.dart';
-import 'package:habitum3/providers/usuario_provider.dart';
+import 'package:habitum3/src/bloc/provider.dart';
+import 'package:habitum3/src/providers/usuario_provider.dart';
 
 class SignUp extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
@@ -8,16 +8,16 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of(context);
-    return Column(
+    return ListView(
       children: [
-        SizedBox(
-          height: 40,
-        ),
+        // SizedBox(
+        //   height: 40,
+        // ),
         _crearUsuario(bloc),
         _crearCorreo(bloc),
         _crearPassword(bloc),
         SizedBox(
-          height: 40,
+          height: 10,
         ),
         _crearBoton(context, bloc),
       ],
@@ -30,26 +30,28 @@ class SignUp extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return GestureDetector(
           onTap: () {
-            // Navigator.pushNamed(context, '/');
             snapshot.hasData ? _login(context, bloc) : null;
           },
-          child: Container(
-            width: 188,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment(0, 6),
-                colors: [Colors.cyan[700], Color(0x004C54)],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Container(
+              width: 188,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment(0, 6),
+                  colors: [Colors.cyan[700], Color(0x004C54)],
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                "Registrarse",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+              child: Center(
+                child: Text(
+                  "Registrarse",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
@@ -63,27 +65,6 @@ class SignUp extends StatelessWidget {
     Navigator.pushReplacementNamed(context, 'home');
     usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
   }
-
-  // Widget _confirmarPassword(LoginBloc bloc) {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(
-  //       horizontal: 20,
-  //       vertical: 15,
-  //     ),
-  //     child: TextField(
-  //       obscureText: true,
-  //       decoration: InputDecoration(
-  //           enabledBorder: UnderlineInputBorder(
-  //             borderSide: BorderSide(color: Colors.white),
-  //           ),
-  //           hintText: "Confirma tu Contraseña",
-  //           hintStyle: TextStyle(
-  //             color: Colors.white,
-  //             fontSize: 20,
-  //           )),
-  //     ),
-  //   );
-  // }
 
   Widget _crearPassword(LoginBloc bloc) {
     return StreamBuilder(
@@ -99,11 +80,11 @@ class SignUp extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  // borderSide: BorderSide(color: Colors.white),
-                  ),
+                borderSide: BorderSide(color: Colors.white),
+              ),
               hintText: "Crea tu Contraseña",
               hintStyle: TextStyle(
-                // color: Colors.white,
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -127,11 +108,11 @@ class SignUp extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  // borderSide: BorderSide(color: Colors.white),
-                  ),
+                borderSide: BorderSide(color: Colors.white),
+              ),
               hintText: "Crea tu Usuario",
               hintStyle: TextStyle(
-                // color: Colors.white,
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -156,11 +137,11 @@ class SignUp extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  // borderSide: BorderSide(color: Colors.white),
-                  ),
+                borderSide: BorderSide(color: Colors.white),
+              ),
               hintText: "Ingresa tu Correo",
               hintStyle: TextStyle(
-                // color: Colors.white,
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),

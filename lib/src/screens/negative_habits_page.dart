@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:habitum3/components/division.dart';
+import 'package:habitum3/src/components/division.dart';
 
-class AddictionsPage extends StatelessWidget {
+class NegativePage extends StatefulWidget {
+  NegativePage({Key key}) : super(key: key);
+
+  @override
+  _NegativePageState createState() => _NegativePageState();
+}
+
+class _NegativePageState extends State<NegativePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        Column(
+    return Container(
+      child: Scaffold(
+        body: Column(
           children: [
             Hero(
               tag: 'barra0',
@@ -35,7 +42,7 @@ class AddictionsPage extends StatelessWidget {
                 icono: Icon(Icons.remove, color: Colors.white),
                 texto: "Negativos",
                 ruta: 'negative',
-                opacidad: 1.0,
+                opacidad: 0.0,
               ),
             ),
             Hero(
@@ -55,12 +62,12 @@ class AddictionsPage extends StatelessWidget {
                 icono: Icon(Icons.not_interested, color: Colors.white),
                 texto: "Adicciones",
                 ruta: 'addictions',
-                opacidad: 0.0,
+                opacidad: 1.0,
               ),
             ),
           ],
         ),
-      ]),
+      ),
     );
   }
 }

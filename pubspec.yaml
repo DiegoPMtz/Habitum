@@ -36,6 +36,7 @@ dependencies:
   rxdart: ^0.24.1
   shared_preferences:
   intl: 
+  liquid_swipe: ^1.5.0
 
 dev_dependencies:
   flutter_test:

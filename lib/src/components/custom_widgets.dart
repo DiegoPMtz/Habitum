@@ -1,0 +1,9 @@
+export 'package:habitum3/src/bloc/provider.dart';
+export 'package:habitum3/src/screens/addictions_page.dart';
+export 'package:habitum3/src/screens/calculator_page.dart';
+export 'package:habitum3/src/screens/home.dart';
+export 'package:habitum3/src/screens/negative_habits_page.dart';
+export 'package:habitum3/src/screens/positive_habits_page.dart';
+export 'package:habitum3/src/screens/sign_in_page.dart';
+export 'package:habitum3/src/screens/user_info_page.dart';
+export 'package:habitum3/src/shared_prefs/preferencias_user.dart';

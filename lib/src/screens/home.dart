@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:habitum3/bloc/provider.dart';
-
-import 'package:habitum3/components/grafica.dart';
-import 'package:habitum3/components/menu.dart';
-import 'package:habitum3/components/user.dart';
+import 'package:habitum3/src/bloc/provider.dart';
+import 'package:habitum3/src/components/grafica.dart';
+import 'package:habitum3/src/components/menu.dart';
+import 'package:habitum3/src/components/user.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -61,6 +60,14 @@ class Home extends StatelessWidget {
           ),
           Separador(context),
           UserInfo(),
+          Positioned(
+            top: MediaQuery.of(context).size.height * .09,
+            left: MediaQuery.of(context).size.height * .07,
+            child: Icon(
+              Icons.build,
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
     );

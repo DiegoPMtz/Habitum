@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habitum3/components/division.dart';
+import 'package:habitum3/src/components/division.dart';
 
 class PositivePage extends StatelessWidget {
   String positivo1 = '';
@@ -10,6 +10,11 @@ class PositivePage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Stack(children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.blue[100],
+          ),
           Column(
             children: [
               Hero(
@@ -138,7 +143,7 @@ class PositivePage extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
         ]),
       ),
     );

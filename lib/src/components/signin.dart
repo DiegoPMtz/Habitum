@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:habitum3/bloc/provider.dart';
-import 'package:habitum3/providers/usuario_provider.dart';
+import 'package:habitum3/src/bloc/provider.dart';
+import 'package:habitum3/src/providers/usuario_provider.dart';
 
 class SignIn extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
@@ -10,17 +10,23 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = Provider.of(context);
 
-    return Column(
+    return ListView(
       children: [
-        SizedBox(
-          height: 40,
-        ),
+        // SizedBox(
+        //   height: 40,
+        // ),
         createEmail(bloc),
         createPassword(bloc),
         SizedBox(
-          height: 50,
+          height: 10,
+<<<<<<< HEAD:lib/src/components/signin.dart
         ),
-        createEmailButton(context, bloc),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50),
+          child: createEmailButton(context, bloc),
+=======
+>>>>>>> parent of f56fe3d... login cambiado:lib/components/signin.dart
+        ),
         SizedBox(
           height: 10,
         ),
@@ -30,7 +36,10 @@ class SignIn extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        createGoogleButton(context),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50),
+          child: createGoogleButton(context),
+        ),
       ],
     );
   }
@@ -49,16 +58,15 @@ class SignIn extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  // borderSide: BorderSide(color: Colors.white),
-                  ),
+                  borderSide: BorderSide(color: Colors.white)),
               hintText: "Contraseña",
               prefixIcon: SvgPicture.asset(
                 'assets/icons/password.svg',
                 fit: BoxFit.scaleDown,
-                // color: Colors.white,
+                color: Colors.white,
               ),
               hintStyle: TextStyle(
-                // color: Colors.white,
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -83,16 +91,16 @@ class SignIn extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  // borderSide: BorderSide(color: Colors.white),
-                  ),
+                borderSide: BorderSide(color: Colors.white),
+              ),
               hintText: "Usuario",
               prefixIcon: SvgPicture.asset(
                 'assets/icons/user2.svg',
                 fit: BoxFit.scaleDown,
-                // color: Colors.white,
+                color: Colors.white,
               ),
               hintStyle: TextStyle(
-                // color: Colors.white,
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),

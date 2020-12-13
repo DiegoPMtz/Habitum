@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habitum3/components/division.dart';
+import 'package:habitum3/src/components/division.dart';
 
 class CalculatorPage extends StatelessWidget {
   @override
