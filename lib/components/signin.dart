@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:habitum3/src/bloc/provider.dart';
-import 'package:habitum3/src/providers/usuario_provider.dart';
+import 'package:habitum3/bloc/provider.dart';
+import 'package:habitum3/providers/usuario_provider.dart';
 
 class SignIn extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
@@ -10,13 +10,17 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = Provider.of(context);
 
-    return ListView(
+    return Column(
       children: [
+        SizedBox(
+          height: 10,
+        ),
         createEmail(bloc),
         createPassword(bloc),
         SizedBox(
           height: 10,
         ),
+        createEmailButton(context, bloc),
         SizedBox(
           height: 10,
         ),
@@ -26,10 +30,7 @@ class SignIn extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
-          child: createGoogleButton(context),
-        ),
+        createGoogleButton(context),
       ],
     );
   }
@@ -48,15 +49,16 @@ class SignIn extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white)),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Contraseña",
               prefixIcon: SvgPicture.asset(
                 'assets/icons/password.svg',
                 fit: BoxFit.scaleDown,
-                color: Colors.white,
+                // color: Colors.white,
               ),
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -81,16 +83,16 @@ class SignIn extends StatelessWidget {
             decoration: InputDecoration(
               errorText: snapshot.error,
               enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.white),
-              ),
+                  // borderSide: BorderSide(color: Colors.white),
+                  ),
               hintText: "Usuario",
               prefixIcon: SvgPicture.asset(
                 'assets/icons/user2.svg',
                 fit: BoxFit.scaleDown,
-                color: Colors.white,
+                // color: Colors.white,
               ),
               hintStyle: TextStyle(
-                color: Colors.white,
+                // color: Colors.white,
                 fontSize: 20,
               ),
             ),

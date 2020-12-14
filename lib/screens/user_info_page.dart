@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:habitum3/src/bloc/provider.dart';
-import 'package:habitum3/src/components/user.dart';
-import 'package:habitum3/src/providers/usuario_provider.dart';
-
+import 'package:habitum3/bloc/login_bloc.dart';
+import 'package:habitum3/bloc/provider.dart';
+import 'package:habitum3/components/user.dart';
+import 'package:habitum3/providers/usuario_provider.dart';
 import 'package:intl/intl.dart';
 
 class UserInfoPage extends StatefulWidget {
@@ -13,7 +13,7 @@ class UserInfoPage extends StatefulWidget {
 class _UserInfoPageState extends State<UserInfoPage> {
   final usuarioProvider = new UsuarioProvider();
   String _birthday;
-  bool _value = true;
+  int _value;
 
   TextEditingController _controlador = new TextEditingController();
 
@@ -24,7 +24,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
       appBar: AppBar(
         backgroundColor: Colors.cyan[700],
         title: Text("Informacion del usuario"),
-        centerTitle: true,
       ),
       body: ListView(
         children: [
@@ -91,7 +90,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             ),
           ),
           SizedBox(
-            height: 40,
+            height: 90,
           ),
           StreamBuilder(
             stream: bloc.formValidStream,
@@ -107,33 +106,11 @@ class _UserInfoPageState extends State<UserInfoPage> {
               );
             },
           ),
-          Divider(
-            thickness: 2,
+          Radio(
+            value: 1,
+            groupValue: _value,
+            onChanged: (value) {},
           ),
-          Container(
-            child: Center(
-              child: Text(
-                "Configuraciones",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          SwitchListTile(
-            value: _value,
-            onChanged: (value) {
-              setState(() {
-                _value = value;
-                print(_value);
-              });
-            },
-            title: Text("Tema"),
-          )
         ],
       ),
     );

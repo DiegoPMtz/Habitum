@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habitum3/src/bloc/provider.dart';
+import 'package:habitum3/bloc/provider.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -15,14 +15,12 @@ class UserInfo extends StatelessWidget {
           padding: EdgeInsets.only(top: 35, left: 20),
           child: GestureDetector(
             child: CircleAvatar(
-              child: Stack(children: [
-                Icon(
-                  Icons.supervised_user_circle,
-                  size: 60,
-                ),
-              ]),
+              child: Icon(
+                Icons.supervised_user_circle,
+                size: 60,
+              ),
               backgroundColor: Colors.white54,
-              radius: 30.0,
+              radius: 35.0,
             ),
             onTap: () {
               Navigator.of(context).pushNamed('user');
