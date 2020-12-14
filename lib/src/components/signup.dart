@@ -10,9 +10,6 @@ class SignUp extends StatelessWidget {
     final bloc = Provider.of(context);
     return ListView(
       children: [
-        // SizedBox(
-        //   height: 40,
-        // ),
         _crearUsuario(bloc),
         _crearCorreo(bloc),
         _crearPassword(bloc),

@@ -12,17 +12,10 @@ class SignIn extends StatelessWidget {
 
     return ListView(
       children: [
-        // SizedBox(
-        //   height: 40,
-        // ),
         createEmail(bloc),
         createPassword(bloc),
         SizedBox(
           height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
-          child: createEmailButton(context, bloc),
         ),
         SizedBox(
           height: 10,
