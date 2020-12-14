@@ -5,10 +5,8 @@ import 'dart:async';
 
 import 'package:habitum3/src/components/signin.dart';
 import 'package:habitum3/src/components/signup.dart';
-import 'package:habitum3/components/SignIn.dart';
-import 'package:habitum3/components/signup.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({Key key}) : super(key: key);
 
   @override

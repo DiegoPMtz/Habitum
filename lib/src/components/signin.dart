@@ -19,13 +19,10 @@ class SignIn extends StatelessWidget {
         createPassword(bloc),
         SizedBox(
           height: 10,
-<<<<<<< HEAD:lib/src/components/signin.dart
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
           child: createEmailButton(context, bloc),
-=======
->>>>>>> parent of f56fe3d... login cambiado:lib/components/signin.dart
         ),
         SizedBox(
           height: 10,
