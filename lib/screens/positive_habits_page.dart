@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
 
 class PositivePage extends StatelessWidget {
-  String positivo1 = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,10 +92,7 @@ class PositivePage extends StatelessWidget {
                       ),
                       border: InputBorder.none,
                     ),
-                    onChanged: (valor) {
-                      positivo1 = valor;
-                      print(positivo1);
-                    },
+                    onChanged: (valor) {},
                   ),
                 ),
                 SizedBox(
@@ -131,9 +126,7 @@ class PositivePage extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: FloatingActionButton(
                     child: Icon(Icons.add),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/', arguments: positivo1);
-                    },
+                    onPressed: () {},
                   ),
                 )
               ],

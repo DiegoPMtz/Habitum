@@ -23,7 +23,7 @@ class _SignInPageState extends State<SignInPage> {
     _color = Color.fromRGBO(
         random.nextInt(255), random.nextInt(255), random.nextInt(255), 0.1);
 
-    _count = Timer.periodic(Duration(seconds: 5), (Timer t) {
+    _count = Timer.periodic(Duration(seconds: 2), (Timer t) {
       setState(() {
         _color = Color.fromRGBO(
             random.nextInt(255), random.nextInt(255), random.nextInt(255), 0.1);
@@ -34,7 +34,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     final circulo = AnimatedContainer(
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 2),
       height: 100,
       width: 100,
       decoration: BoxDecoration(
@@ -44,7 +44,7 @@ class _SignInPageState extends State<SignInPage> {
     );
 
     final circulopeq = AnimatedContainer(
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 3),
       height: 50,
       width: 50,
       decoration: BoxDecoration(
