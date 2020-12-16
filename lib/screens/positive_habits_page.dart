@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
+import 'package:habitum3/models/habitos_model.dart';
+import 'package:habitum3/providers/habitos_provider.dart';
 
-class PositivePage extends StatelessWidget {
-  String positivo1 = '';
+class PositivePage extends StatefulWidget {
+  @override
+  _PositivePageState createState() => _PositivePageState();
+}
+
+class _PositivePageState extends State<PositivePage> {
+  final formKey = GlobalKey<FormState>();
+  final habitosProvider = new HabitosProvider();
+
+  HabitoModel habito = new HabitoModel();
+  bool _value = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          _submit();
+          Navigator.pushReplacementNamed(context, 'home');
+        },
+      ),
       body: SafeArea(
         child: Stack(children: [
           Column(
@@ -78,69 +96,76 @@ class PositivePage extends StatelessWidget {
                 Container(
                   // padding: EdgeInsets.symmetric(horizontal: 25),
                   decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(.1),
                       borderRadius: BorderRadius.all(Radius.circular(15))),
-                  child: TextField(
-                    cursorColor: Colors.cyan,
-                    decoration: InputDecoration(
-                      prefix: SizedBox(
-                        width: 8,
-                      ),
-                      hintText:
-                          "(Salir a correr en las mañanas, tomar mas agua)",
-                      hintStyle: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 12,
-                      ),
-                      border: InputBorder.none,
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        _crearHabito(),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20),
+                          child: Text("Descripcion (opcional)"),
+                        ),
+                        _crearDescripcion(),
+                        SwitchListTile(
+                          value: habito.recordatorio,
+                          title: Text("Recordatorio"),
+                          onChanged: (value) {
+                            habito.recordatorio = value;
+                            setState(() {});
+                          },
+                        ),
+                      ],
                     ),
-                    onChanged: (valor) {
-                      positivo1 = valor;
-                      print(positivo1);
-                    },
                   ),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height * .14,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey[200],
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      Text("Descripcion"),
-                      TextField(
-                        cursorColor: Colors.cyan,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                        maxLines: null,
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 250,
-                  alignment: Alignment.bottomRight,
-                  child: FloatingActionButton(
-                    child: Icon(Icons.add),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/', arguments: positivo1);
-                    },
-                  ),
-                )
               ],
             ),
           )
         ]),
       ),
     );
+  }
+
+  Widget _crearDescripcion() {
+    return TextFormField(
+      textInputAction: TextInputAction.send,
+      decoration: InputDecoration(),
+      onSaved: (value) => habito.descripcion = value,
+    );
+  }
+
+  Widget _crearHabito() {
+    return TextFormField(
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        hintText: "(Salir a correr en las mañanas, tomar mas agua)",
+      ),
+      onSaved: (value) => habito.habito = value,
+      validator: (value) {
+        if (value.length < 4) {
+          return "Ingrese el habito";
+        } else {
+          return null;
+        }
+      },
+    );
+  }
+
+  void _submit() {
+    if (!formKey.currentState.validate()) return;
+
+    formKey.currentState.save();
+
+    print("todo ok");
+
+    print(habito.habito);
+    print(habito.descripcion);
+    print(habito.recordatorio);
+
+    habitosProvider.crearHabito(habito);
   }
 }
