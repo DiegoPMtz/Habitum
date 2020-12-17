@@ -19,6 +19,18 @@ class HabitosProvider {
     return true;
   }
 
+  Future<bool> editarHabito(HabitoModel habito) async {
+    final url = '$_url/habitos/${habito.id}.json';
+
+    final resp = await http.put(url, body: habitoModelToJson(habito));
+
+    final decodedData = json.decode(resp.body);
+
+    print(decodedData);
+
+    return true;
+  }
+
   Future<List<HabitoModel>> cargarHabito() async {
     final url = "$_url/habitos.json";
 
@@ -28,12 +40,14 @@ class HabitosProvider {
 
     final List<HabitoModel> habitos = new List();
 
-    decodedData.forEach((id, habito) {
-      final habitTemp = HabitoModel.fromJson(habito);
-      habitTemp.id = id;
+    if (decodedData != null) {
+      decodedData.forEach((id, habito) {
+        final habitTemp = HabitoModel.fromJson(habito);
+        habitTemp.id = id;
 
-      habitos.add(habitTemp);
-    });
+        habitos.add(habitTemp);
+      });
+    }
 
     return habitos;
   }

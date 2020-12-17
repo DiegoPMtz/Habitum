@@ -112,7 +112,8 @@ class Home extends StatelessWidget {
       child: ListTile(
         title: Text('${habito.habito}'),
         subtitle: Text('${habito.descripcion}'),
-        onTap: () => Navigator.pushNamed(context, 'positive'),
+        onTap: () =>
+            Navigator.pushNamed(context, 'positive', arguments: habito),
       ),
     );
   }

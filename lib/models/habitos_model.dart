@@ -26,7 +26,7 @@ class HabitoModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        // "id": id,
         "habito": habito,
         "descripcion": descripcion,
         "recordatorio": recordatorio,

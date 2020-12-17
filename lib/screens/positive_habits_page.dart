@@ -13,10 +13,16 @@ class _PositivePageState extends State<PositivePage> {
   final habitosProvider = new HabitosProvider();
 
   HabitoModel habito = new HabitoModel();
+
   bool _value = true;
 
   @override
   Widget build(BuildContext context) {
+    final HabitoModel habitData = ModalRoute.of(context).settings.arguments;
+
+    if (habitData != null) {
+      habito = habitData;
+    }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
@@ -132,6 +138,7 @@ class _PositivePageState extends State<PositivePage> {
 
   Widget _crearDescripcion() {
     return TextFormField(
+      initialValue: habito.descripcion,
       textInputAction: TextInputAction.send,
       decoration: InputDecoration(),
       onSaved: (value) => habito.descripcion = value,
@@ -140,6 +147,7 @@ class _PositivePageState extends State<PositivePage> {
 
   Widget _crearHabito() {
     return TextFormField(
+      initialValue: habito.habito,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         hintText: "(Salir a correr en las mañanas, tomar mas agua)",
@@ -166,6 +174,10 @@ class _PositivePageState extends State<PositivePage> {
     print(habito.descripcion);
     print(habito.recordatorio);
 
-    habitosProvider.crearHabito(habito);
+    if (habito.id == null) {
+      habitosProvider.crearHabito(habito);
+    } else {
+      habitosProvider.editarHabito(habito);
+    }
   }
 }
