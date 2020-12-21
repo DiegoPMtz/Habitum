@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
 import 'package:habitum3/models/habitos_model.dart';
 import 'package:habitum3/providers/habitos_provider.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 class PositivePage extends StatefulWidget {
   @override
@@ -18,6 +19,9 @@ class _PositivePageState extends State<PositivePage> {
 
   @override
   Widget build(BuildContext context) {
+    final prefs = new PreferenciasUsuario();
+
+    prefs.ultimaPagina = 'positive';
     final HabitoModel habitData = ModalRoute.of(context).settings.arguments;
 
     if (habitData != null) {

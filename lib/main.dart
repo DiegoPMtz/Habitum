@@ -10,10 +10,15 @@ import 'package:habitum3/screens/negative_habits_page.dart';
 import 'package:habitum3/screens/positive_habits_page.dart';
 import 'package:habitum3/screens/sign_in_page.dart';
 import 'package:habitum3/screens/user_info_page.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 import 'bloc/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
+
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
@@ -25,10 +30,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setPreferredOrientations([
-    //   DeviceOrientation.portraitUp,
-    //   DeviceOrientation.portraitDown,
-    // ]);
+    final prefs = new PreferenciasUsuario();
+
+    print(prefs.token);
+
     return Provider(
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -46,7 +51,7 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             textTheme: GoogleFonts.latoTextTheme(),
           ),
-          initialRoute: 'signin',
+          initialRoute: (prefs.token != null) ? prefs.ultimaPagina : 'signin',
           routes: {
             'signin': (BuildContext context) => SignInPage(),
             'home': (BuildContext context) => Home(),

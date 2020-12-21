@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 
 class UsuarioProvider {
   final String _firebaseToken = 'AIzaSyCzFnV9mkVnrG9a5h2TeoWP_qlDclSCAUk';
+  final _prefs = new PreferenciasUsuario();
 
   Future<Map<String, dynamic>> login(String email, String password) async {
     final authData = {
@@ -19,9 +21,11 @@ class UsuarioProvider {
     print(decodedResp);
 
     if (decodedResp.containsKey('idToken')) {
+      _prefs.token = decodedResp['idToken'];
+
       return {'ok': true, 'token': decodedResp['idToken']};
     } else {
-      return {'ok': false, 'token': decodedResp['error']['message']};
+      return {'ok': false, 'mensaje': decodedResp['error']['message']};
     }
   }
 
@@ -40,9 +44,10 @@ class UsuarioProvider {
     print(decodedResp);
 
     if (decodedResp.containsKey('idToken')) {
+      _prefs.token = decodedResp['idToken'];
       return {'ok': true, 'token': decodedResp['idToken']};
     } else {
-      return {'ok': false, 'token': decodedResp['error']['message']};
+      return {'ok': false, 'mensaje': decodedResp['error']['message']};
     }
   }
 
@@ -64,7 +69,7 @@ class UsuarioProvider {
     if (decodedResp.containsKey('idToken')) {
       return {'ok': true, 'token': decodedResp['idToken']};
     } else {
-      return {'ok': false, 'token': decodedResp['error']['message']};
+      return {'ok': false, 'mensaje': decodedResp['error']['message']};
     }
   }
 }

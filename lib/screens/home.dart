@@ -8,12 +8,17 @@ import 'package:habitum3/components/habitos_positivos.dart';
 import 'package:habitum3/components/menu.dart';
 import 'package:habitum3/components/user.dart';
 import 'package:habitum3/providers/habitos_provider.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 class Home extends StatelessWidget {
   final habitosProvider = new HabitosProvider();
 
   @override
   Widget build(BuildContext context) {
+    final prefs = new PreferenciasUsuario();
+
+    prefs.ultimaPagina = 'home';
+
     final size = MediaQuery.of(context).size;
     final bloc = Provider.of(context);
 

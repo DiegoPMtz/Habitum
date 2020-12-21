@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:habitum3/bloc/provider.dart';
 import 'package:habitum3/providers/usuario_provider.dart';
 
+import '../utils.dart';
+
 class SignUp extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
 
@@ -10,9 +12,6 @@ class SignUp extends StatelessWidget {
     final bloc = Provider.of(context);
     return Column(
       children: [
-        SizedBox(
-          height: 10,
-        ),
         _crearUsuario(bloc),
         _crearCorreo(bloc),
         _crearPassword(bloc),
@@ -59,9 +58,13 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  _login(BuildContext context, LoginBloc bloc) {
-    Navigator.pushReplacementNamed(context, 'home');
-    usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
+  _login(BuildContext context, LoginBloc bloc) async {
+    final info = await usuarioProvider.nuevoUsuario(bloc.email, bloc.password);
+    if (info['ok']) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      mostrarAlerta(context, info['mensaje']);
+    }
   }
 
   // Widget _confirmarPassword(LoginBloc bloc) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:habitum3/models/habitos_model.dart';
@@ -7,8 +8,10 @@ import 'package:habitum3/models/habitos_model.dart';
 class HabitosProvider {
   final String _url = 'https://habitum-c1f5b-default-rtdb.firebaseio.com';
 
+  final _prefs = new PreferenciasUsuario();
+
   Future<bool> crearHabito(HabitoModel habito) async {
-    final url = '$_url/habitos.json';
+    final url = '$_url/habitos.json?auth=${_prefs.token}';
 
     final resp = await http.post(url, body: habitoModelToJson(habito));
 
@@ -20,7 +23,7 @@ class HabitosProvider {
   }
 
   Future<bool> crearHabitoneg(HabitoModel habito) async {
-    final url = '$_url/habitosneg.json';
+    final url = '$_url/habitosneg.json?auth=${_prefs.token}';
 
     final resp = await http.post(url, body: habitoModelToJson(habito));
 
@@ -32,7 +35,7 @@ class HabitosProvider {
   }
 
   Future<bool> editarHabito(HabitoModel habito) async {
-    final url = '$_url/habitos/${habito.id}.json';
+    final url = '$_url/habitos/${habito.id}.json?auth=${_prefs.token}';
 
     final resp = await http.put(url, body: habitoModelToJson(habito));
 
@@ -44,7 +47,7 @@ class HabitosProvider {
   }
 
   Future<bool> editarHabitoNeg(HabitoModel habito) async {
-    final url = '$_url/habitosneg/${habito.id}.json';
+    final url = '$_url/habitosneg/${habito.id}.json?auth=${_prefs.token}';
 
     final resp = await http.put(url, body: habitoModelToJson(habito));
 
@@ -56,7 +59,7 @@ class HabitosProvider {
   }
 
   Future<List<HabitoModel>> cargarHabito() async {
-    final url = "$_url/habitos.json";
+    final url = "$_url/habitos.json?auth=${_prefs.token}";
 
     final resp = await http.get(url);
 
@@ -77,7 +80,7 @@ class HabitosProvider {
   }
 
   Future<List<HabitoModel>> cargarHabitoNeg() async {
-    final url = "$_url/habitosneg.json";
+    final url = "$_url/habitosneg.json?auth=${_prefs.token}";
 
     final resp = await http.get(url);
 
@@ -98,7 +101,7 @@ class HabitosProvider {
   }
 
   Future<int> borrarHabito(String id) async {
-    final url = '$_url/habitos/$id.json';
+    final url = '$_url/habitos/$id.json?auth=${_prefs.token}';
     final resp = await http.delete(url);
 
     print(resp.body);
@@ -106,7 +109,7 @@ class HabitosProvider {
   }
 
   Future<int> borrarHabitoNeg(String id) async {
-    final url = '$_url/habitosneg/$id.json';
+    final url = '$_url/habitosneg/$id.json?auth=${_prefs.token}';
     final resp = await http.delete(url);
 
     print(resp.body);

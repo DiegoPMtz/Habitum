@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
 import 'package:habitum3/models/habitos_model.dart';
 import 'package:habitum3/providers/habitos_provider.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 class NegativePage extends StatefulWidget {
   NegativePage({Key key}) : super(key: key);
@@ -19,6 +20,9 @@ class _NegativePageState extends State<NegativePage> {
   bool _value = true;
   @override
   Widget build(BuildContext context) {
+    final prefs = new PreferenciasUsuario();
+
+    prefs.ultimaPagina = 'negative';
     final HabitoModel habitData = ModalRoute.of(context).settings.arguments;
 
     if (habitData != null) {

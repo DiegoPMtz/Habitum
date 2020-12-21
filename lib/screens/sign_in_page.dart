@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:habitum3/components/SignIn.dart';
 import 'package:habitum3/components/signup.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key key}) : super(key: key);
@@ -33,6 +34,9 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final prefs = new PreferenciasUsuario();
+
+    prefs.ultimaPagina = 'signin';
     final circulo = AnimatedContainer(
       duration: Duration(seconds: 2),
       height: 100,

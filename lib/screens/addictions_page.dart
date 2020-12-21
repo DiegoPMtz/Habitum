@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 class AddictionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final prefs = new PreferenciasUsuario();
+
+    prefs.ultimaPagina = 'addictions';
     return Scaffold(
       body: Stack(children: [
         Column(

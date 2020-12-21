@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:habitum3/components/division.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
 class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final prefs = new PreferenciasUsuario();
+
+    prefs.ultimaPagina = 'calculator';
     return Scaffold(
       body: Column(
         children: [

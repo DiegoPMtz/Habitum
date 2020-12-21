@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:habitum3/bloc/provider.dart';
 import 'package:habitum3/providers/usuario_provider.dart';
 
+import '../utils.dart';
+
 class SignIn extends StatelessWidget {
   final usuarioProvider = new UsuarioProvider();
 
@@ -12,9 +14,6 @@ class SignIn extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(
-          height: 10,
-        ),
         createEmail(bloc),
         createPassword(bloc),
         SizedBox(
@@ -138,9 +137,14 @@ class SignIn extends StatelessWidget {
     );
   }
 
-  _login(BuildContext context, LoginBloc bloc) {
-    usuarioProvider.login(bloc.email, bloc.password);
-    Navigator.pushReplacementNamed(context, 'home');
+  _login(BuildContext context, LoginBloc bloc) async {
+    Map info = await usuarioProvider.login(bloc.email, bloc.password);
+
+    if (info['ok']) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      mostrarAlerta(context, info['mensaje']);
+    }
   }
 
   Widget createGoogleButton(BuildContext context) {
