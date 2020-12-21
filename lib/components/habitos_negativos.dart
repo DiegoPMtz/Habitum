@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:habitum3/models/habitos_model.dart';
 import 'package:habitum3/providers/habitos_provider.dart';
 
-class MostrarHabitos extends StatefulWidget {
+class MostrarHabitosNeg extends StatefulWidget {
   @override
-  _MostrarHabitosState createState() => _MostrarHabitosState();
+  _MostrarHabitosNegState createState() => _MostrarHabitosNegState();
 }
 
-class _MostrarHabitosState extends State<MostrarHabitos> {
+class _MostrarHabitosNegState extends State<MostrarHabitosNeg> {
   final habitosProvider = new HabitosProvider();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: habitosProvider.cargarHabito(),
+      future: habitosProvider.cargarHabitoNeg(),
       builder:
           (BuildContext context, AsyncSnapshot<List<HabitoModel>> snapshot) {
         if (snapshot.hasData) {
@@ -63,7 +63,7 @@ class _MostrarHabitosState extends State<MostrarHabitos> {
                       child: Text("No")),
                   TextButton(
                       onPressed: () {
-                        habitosProvider.borrarHabito(habito.id);
+                        habitosProvider.borrarHabitoNeg(habito.id);
                         Navigator.pop(context);
                       },
                       child: Text("Si")),
@@ -74,14 +74,14 @@ class _MostrarHabitosState extends State<MostrarHabitos> {
       child: ListTile(
         title: Text(
           '${habito.habito}',
-          style: TextStyle(fontSize: 18, color: Colors.blueAccent),
+          style: TextStyle(fontSize: 18, color: Colors.redAccent),
         ),
         subtitle: Text(
           '${habito.descripcion}',
           style: TextStyle(fontSize: 16),
         ),
         onTap: () =>
-            Navigator.pushNamed(context, 'positive', arguments: habito),
+            Navigator.pushNamed(context, 'negative', arguments: habito),
       ),
     );
   }

@@ -139,7 +139,9 @@ class _PositivePageState extends State<PositivePage> {
   Widget _crearDescripcion() {
     return TextFormField(
       initialValue: habito.descripcion,
-      textInputAction: TextInputAction.send,
+      textInputAction: TextInputAction.next,
+      textCapitalization: TextCapitalization.sentences,
+      maxLines: 3,
       decoration: InputDecoration(),
       onSaved: (value) => habito.descripcion = value,
     );

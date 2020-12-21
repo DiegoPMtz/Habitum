@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             textTheme: GoogleFonts.latoTextTheme(),
           ),
-          initialRoute: 'home',
+          initialRoute: 'signin',
           routes: {
             'signin': (BuildContext context) => SignInPage(),
             'home': (BuildContext context) => Home(),

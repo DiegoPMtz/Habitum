@@ -78,7 +78,7 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * .55,
-                  width: MediaQuery.of(context).size.width * .7,
+                  width: MediaQuery.of(context).size.width * .8,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(40),
                       color: Colors.white,
