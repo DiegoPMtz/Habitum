@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
     final prefs = new PreferenciasUsuario();
 
     print(prefs.token);
+    print(prefs.localId);
 
     return Provider(
       child: MaterialApp(
@@ -51,7 +52,9 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             textTheme: GoogleFonts.latoTextTheme(),
           ),
-          initialRoute: (prefs.token != null) ? prefs.ultimaPagina : 'signin',
+          initialRoute: (prefs.token != null || prefs.token != '')
+              ? prefs.ultimaPagina
+              : 'signin',
           routes: {
             'signin': (BuildContext context) => SignInPage(),
             'home': (BuildContext context) => Home(),

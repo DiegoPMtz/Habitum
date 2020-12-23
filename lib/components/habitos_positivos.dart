@@ -80,6 +80,7 @@ class _MostrarHabitosState extends State<MostrarHabitos> {
           '${habito.descripcion}',
           style: TextStyle(fontSize: 16),
         ),
+        trailing: Text("${habito.puntos} pts"),
         onTap: () =>
             Navigator.pushNamed(context, 'positive', arguments: habito),
       ),

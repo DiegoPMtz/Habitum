@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:habitum3/bloc/provider.dart';
+import 'package:habitum3/models/habitos_model.dart';
+import 'package:habitum3/providers/habitos_provider.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 
-class UserInfo extends StatelessWidget {
+class UserInfo extends StatefulWidget {
   const UserInfo({
     Key key,
   }) : super(key: key);
 
   @override
+  _UserInfoState createState() => _UserInfoState();
+}
+
+class _UserInfoState extends State<UserInfo> {
+  final _prefs = PreferenciasUsuario();
+  @override
   Widget build(BuildContext context) {
+    final habito = HabitosProvider();
     final bloc = Provider.of(context);
+    setState(() {});
     return Row(
       children: [
         Container(
@@ -40,7 +51,7 @@ class UserInfo extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               Text(
-                "Puntuacion: 0",
+                "Puntuacion: ${_prefs.puntuacion} pts",
                 style: TextStyle(fontSize: 20),
               ),
             ],

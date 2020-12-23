@@ -3,6 +3,7 @@ import 'package:habitum3/components/division.dart';
 import 'package:habitum3/models/habitos_model.dart';
 import 'package:habitum3/providers/habitos_provider.dart';
 import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
+import 'package:intl/intl.dart';
 
 class NegativePage extends StatefulWidget {
   NegativePage({Key key}) : super(key: key);
@@ -14,10 +15,13 @@ class NegativePage extends StatefulWidget {
 class _NegativePageState extends State<NegativePage> {
   final formKey = GlobalKey<FormState>();
   final habitosProvider = new HabitosProvider();
+  final _prefs = new PreferenciasUsuario();
 
   HabitoModel habito = new HabitoModel();
 
-  bool _value = true;
+  String _fechainicio, _fechafin;
+  int _dias = 0;
+  TextEditingController _controlador = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     final prefs = new PreferenciasUsuario();
@@ -117,7 +121,7 @@ class _NegativePageState extends State<NegativePage> {
                           _crearHabito(),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
-                            child: Text("Descripcion (opcional)"),
+                            child: Text("Descripción (opcional)"),
                           ),
                           _crearDescripcion(),
                           SwitchListTile(
@@ -128,6 +132,25 @@ class _NegativePageState extends State<NegativePage> {
                               habito.recordatorio = value;
                               setState(() {});
                             },
+                          ),
+                          Container(
+                            child: TextFormField(
+                              controller: _controlador,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.date_range),
+                                hintText: "Duración",
+                                counterText: "$_dias Dias",
+                              ),
+                              onTap: () {
+                                FocusScope.of(context)
+                                    .requestFocus(new FocusNode());
+                                _fecha();
+                              },
+                              onSaved: (value) {
+                                habito.duracion = value;
+                                habito.puntos = (_dias * 25);
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -188,11 +211,33 @@ class _NegativePageState extends State<NegativePage> {
     print(habito.habito);
     print(habito.descripcion);
     print(habito.recordatorio);
+    _prefs.puntuacion += habito.puntos;
 
     if (habito.id == null) {
       habitosProvider.crearHabitoneg(habito);
     } else {
       habitosProvider.editarHabitoNeg(habito);
     }
+  }
+
+  _fecha() async {
+    final DateTimeRange newDateRange = await showDateRangePicker(
+      context: context,
+      initialDateRange: DateTimeRange(
+        start: DateTime.now(),
+        end: DateTime.now(),
+      ),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2022, 7),
+      helpText: 'Selecciona un rango',
+    );
+    setState(() {
+      _fechainicio = DateFormat('dd/MM/yyyy').format(newDateRange.start);
+      _fechafin = DateFormat('dd/MM/yyyy').format(newDateRange.end);
+      _controlador.text = "$_fechainicio - $_fechafin";
+      _dias = newDateRange.duration.inDays;
+    });
+
+    print(_dias);
   }
 }

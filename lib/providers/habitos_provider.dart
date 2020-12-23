@@ -11,7 +11,7 @@ class HabitosProvider {
   final _prefs = new PreferenciasUsuario();
 
   Future<bool> crearHabito(HabitoModel habito) async {
-    final url = '$_url/habitos.json?auth=${_prefs.token}';
+    final url = '$_url/${_prefs.localId}/habitos.json?auth=${_prefs.token}';
 
     final resp = await http.post(url, body: habitoModelToJson(habito));
 
@@ -23,7 +23,7 @@ class HabitosProvider {
   }
 
   Future<bool> crearHabitoneg(HabitoModel habito) async {
-    final url = '$_url/habitosneg.json?auth=${_prefs.token}';
+    final url = '$_url/${_prefs.localId}/habitosneg.json?auth=${_prefs.token}';
 
     final resp = await http.post(url, body: habitoModelToJson(habito));
 
@@ -35,7 +35,8 @@ class HabitosProvider {
   }
 
   Future<bool> editarHabito(HabitoModel habito) async {
-    final url = '$_url/habitos/${habito.id}.json?auth=${_prefs.token}';
+    final url =
+        '$_url/${_prefs.localId}/habitos/${habito.id}.json?auth=${_prefs.token}';
 
     final resp = await http.put(url, body: habitoModelToJson(habito));
 
@@ -47,7 +48,8 @@ class HabitosProvider {
   }
 
   Future<bool> editarHabitoNeg(HabitoModel habito) async {
-    final url = '$_url/habitosneg/${habito.id}.json?auth=${_prefs.token}';
+    final url =
+        '$_url/${_prefs.localId}/habitosneg/${habito.id}.json?auth=${_prefs.token}';
 
     final resp = await http.put(url, body: habitoModelToJson(habito));
 
@@ -59,7 +61,7 @@ class HabitosProvider {
   }
 
   Future<List<HabitoModel>> cargarHabito() async {
-    final url = "$_url/habitos.json?auth=${_prefs.token}";
+    final url = "$_url/${_prefs.localId}/habitos.json?auth=${_prefs.token}";
 
     final resp = await http.get(url);
 
@@ -76,11 +78,13 @@ class HabitosProvider {
       });
     }
 
+    if (decodedData['error'] != null) return [];
+
     return habitos;
   }
 
   Future<List<HabitoModel>> cargarHabitoNeg() async {
-    final url = "$_url/habitosneg.json?auth=${_prefs.token}";
+    final url = "$_url/${_prefs.localId}/habitosneg.json?auth=${_prefs.token}";
 
     final resp = await http.get(url);
 
@@ -101,7 +105,7 @@ class HabitosProvider {
   }
 
   Future<int> borrarHabito(String id) async {
-    final url = '$_url/habitos/$id.json?auth=${_prefs.token}';
+    final url = '$_url/${_prefs.localId}/habitos/$id.json?auth=${_prefs.token}';
     final resp = await http.delete(url);
 
     print(resp.body);
@@ -109,7 +113,8 @@ class HabitosProvider {
   }
 
   Future<int> borrarHabitoNeg(String id) async {
-    final url = '$_url/habitosneg/$id.json?auth=${_prefs.token}';
+    final url =
+        '$_url/${_prefs.localId}/habitosneg/$id.json?auth=${_prefs.token}';
     final resp = await http.delete(url);
 
     print(resp.body);

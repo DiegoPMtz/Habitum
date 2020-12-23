@@ -44,7 +44,7 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 25,
+                  height: 0,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),

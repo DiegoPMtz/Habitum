@@ -3,6 +3,7 @@ import 'package:habitum3/bloc/login_bloc.dart';
 import 'package:habitum3/bloc/provider.dart';
 import 'package:habitum3/components/user.dart';
 import 'package:habitum3/providers/usuario_provider.dart';
+import 'package:habitum3/shared_preferences/preferencias_usuario.dart';
 import 'package:intl/intl.dart';
 
 class UserInfoPage extends StatefulWidget {
@@ -12,8 +13,9 @@ class UserInfoPage extends StatefulWidget {
 
 class _UserInfoPageState extends State<UserInfoPage> {
   final usuarioProvider = new UsuarioProvider();
+  final bloc = new LoginBloc();
+  final _prefs = new PreferenciasUsuario();
   String _birthday;
-  int _value;
 
   TextEditingController _controlador = new TextEditingController();
 
@@ -90,7 +92,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             ),
           ),
           SizedBox(
-            height: 90,
+            height: 10,
           ),
           StreamBuilder(
             stream: bloc.formValidStream,
@@ -106,11 +108,14 @@ class _UserInfoPageState extends State<UserInfoPage> {
               );
             },
           ),
-          Radio(
-            value: 1,
-            groupValue: _value,
-            onChanged: (value) {},
-          ),
+          FloatingActionButton(
+              child: Icon(Icons.logout),
+              onPressed: () {
+                bloc.dispose();
+                bloc.changeUser;
+                Navigator.of(context).pushReplacementNamed('signin');
+                setState(() {});
+              })
         ],
       ),
     );
@@ -134,6 +139,6 @@ class _UserInfoPageState extends State<UserInfoPage> {
   }
 
   _actualizarUsuario(BuildContext context, LoginBloc bloc) {
-    usuarioProvider.actualizarUsuario(bloc.email, bloc.password, bloc.user);
+    usuarioProvider.actualizarUsuario(_prefs.token, bloc.user);
   }
 }

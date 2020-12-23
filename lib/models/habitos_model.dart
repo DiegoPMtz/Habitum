@@ -10,12 +10,16 @@ class HabitoModel {
   String habito;
   String descripcion;
   bool recordatorio;
+  int puntos;
+  String duracion;
 
   HabitoModel({
     this.id,
     this.habito,
     this.descripcion,
     this.recordatorio = false,
+    this.puntos = 0,
+    this.duracion = '',
   });
 
   factory HabitoModel.fromJson(Map<String, dynamic> json) => HabitoModel(
@@ -23,6 +27,8 @@ class HabitoModel {
         habito: json["habito"],
         descripcion: json["descripcion"],
         recordatorio: json["recordatorio"],
+        puntos: json["puntos"],
+        duracion: json["duracion"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -30,5 +36,7 @@ class HabitoModel {
         "habito": habito,
         "descripcion": descripcion,
         "recordatorio": recordatorio,
+        "puntos": puntos,
+        "duracion": duracion,
       };
 }

@@ -109,6 +109,13 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _count.cancel();
+  }
 }
 
 Widget _tabSection(BuildContext context) {

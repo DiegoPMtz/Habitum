@@ -67,27 +67,6 @@ class SignUp extends StatelessWidget {
     }
   }
 
-  // Widget _confirmarPassword(LoginBloc bloc) {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(
-  //       horizontal: 20,
-  //       vertical: 15,
-  //     ),
-  //     child: TextField(
-  //       obscureText: true,
-  //       decoration: InputDecoration(
-  //           enabledBorder: UnderlineInputBorder(
-  //             borderSide: BorderSide(color: Colors.white),
-  //           ),
-  //           hintText: "Confirma tu Contraseña",
-  //           hintStyle: TextStyle(
-  //             color: Colors.white,
-  //             fontSize: 20,
-  //           )),
-  //     ),
-  //   );
-  // }
-
   Widget _crearPassword(LoginBloc bloc) {
     return StreamBuilder(
       stream: bloc.passwordStream,

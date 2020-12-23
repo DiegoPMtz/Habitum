@@ -22,6 +22,7 @@ class UsuarioProvider {
 
     if (decodedResp.containsKey('idToken')) {
       _prefs.token = decodedResp['idToken'];
+      _prefs.localId = decodedResp['localId'];
 
       return {'ok': true, 'token': decodedResp['idToken']};
     } else {
@@ -45,6 +46,7 @@ class UsuarioProvider {
 
     if (decodedResp.containsKey('idToken')) {
       _prefs.token = decodedResp['idToken'];
+      _prefs.localId = decodedResp['localId'];
       return {'ok': true, 'token': decodedResp['idToken']};
     } else {
       return {'ok': false, 'mensaje': decodedResp['error']['message']};
@@ -52,10 +54,9 @@ class UsuarioProvider {
   }
 
   Future<Map<String, dynamic>> actualizarUsuario(
-      String email, String password, String user) async {
+      String token, String user) async {
     final authData = {
-      'email': email,
-      'password': password,
+      'idToken': token,
       'displayName': user,
       'returnSecureToken': true,
     };
@@ -67,9 +68,11 @@ class UsuarioProvider {
     print(decodedResp);
 
     if (decodedResp.containsKey('idToken')) {
+      // _prefs.displayName = decodedResp['displayName'];
       return {'ok': true, 'token': decodedResp['idToken']};
-    } else {
-      return {'ok': false, 'mensaje': decodedResp['error']['message']};
     }
+    // else {
+    //   return {'ok': false, 'mensaje': decodedResp['error']['message']};
+    // }
   }
 }

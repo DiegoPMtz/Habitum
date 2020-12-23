@@ -80,6 +80,7 @@ class _MostrarHabitosNegState extends State<MostrarHabitosNeg> {
           '${habito.descripcion}',
           style: TextStyle(fontSize: 16),
         ),
+        trailing: Text("${habito.puntos} pts"),
         onTap: () =>
             Navigator.pushNamed(context, 'negative', arguments: habito),
       ),
